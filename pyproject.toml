@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "discord-admin-relay"
+version = "0.1.0"
+description = "Discord admin command relay for HTTP bot APIs and Eggdrop partyline"
+requires-python = ">=3.10"
+dependencies = [
+    "aiohttp>=3.9.0",
+    "discord.py>=2.4.0",
+    "PyYAML>=6.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.scripts]
+discord-admin-relay = "discord_admin:main"
+
+[tool.setuptools]
+py-modules = ["discord_admin", "eggdrop_telnet"]

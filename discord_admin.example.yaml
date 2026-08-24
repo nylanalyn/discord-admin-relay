@@ -1,0 +1,36 @@
+discord:
+  token: "${DISCORD_BOT_TOKEN}"
+  guild_id: "${DISCORD_GUILD_ID:-}"
+  admin_channel_id: "${DISCORD_ADMIN_CHANNEL_ID}"
+  allowed_user_ids:
+    - "${DISCORD_ADMIN_USER_ID}"
+  message_commands_enabled: true
+  slash_command: "bot"
+  poll_events_seconds: 5
+
+bots:
+  aria:
+    url: "http://127.0.0.1:9101"
+    env_file: "aria/.env"
+    token_env: "ARIA_ADMIN_TOKEN"
+  frauderick:
+    url: "http://127.0.0.1:9102"
+    env_file: "frauderick/.env"
+    token_env: "FRAUDERICK_ADMIN_TOKEN"
+  rumi:
+    url: "http://127.0.0.1:9103"
+    env_file: "rumi-as/.env"
+    token_env: "RUMI_ADMIN_TOKEN"
+  eggdrop:
+    type: "eggdrop"
+    host: "127.0.0.1"
+    port: 6465
+    username: "${EGGDROP_PARTYLINE_USER}"
+    password: "${EGGDROP_PARTYLINE_PASSWORD}"
+    login_timeout_seconds: 10
+    command_timeout_seconds: 8
+    response_idle_seconds: 1
+
+logging:
+  level: "INFO"
+  file: "discord_admin.log"

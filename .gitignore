@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+.env
+.env.*
+!.env.example
+
+# Packaging
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Test, type-checking, and linting output
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Local relay configuration and runtime output
+discord_admin.yaml
+*.local.yaml
+*.secret.yaml
+*.log
+
+# Editors and operating systems
+.idea/
+.vscode/
+.DS_Store
