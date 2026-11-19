@@ -1,0 +1,39 @@
+fluxer:
+  instance_url: "${FLUXER_INSTANCE_URL}"        # e.g. https://fluxer.example.com
+  token: "${FLUXER_BOT_TOKEN}"
+  # Optional: skip /.well-known/fluxer discovery and set these directly.
+  # api_url: "https://fluxer.example.com/api/v1"
+  # gateway_url: "wss://fluxer.example.com/gateway?v=1&encoding=json"
+  admin_channel_id: "${FLUXER_ADMIN_CHANNEL_ID}"
+  allowed_user_ids:
+    - "${FLUXER_ADMIN_USER_ID}"
+  poll_events_seconds: 5
+  # Note: Fluxer does not implement bot slash commands yet, so only
+  # message commands ("<bot> <command> <args>") are served.
+
+bots:
+  aria:
+    url: "http://127.0.0.1:9101"
+    env_file: "aria/.env"
+    token_env: "ARIA_ADMIN_TOKEN"
+  frauderick:
+    url: "http://127.0.0.1:9102"
+    env_file: "frauderick/.env"
+    token_env: "FRAUDERICK_ADMIN_TOKEN"
+  rumi:
+    url: "http://127.0.0.1:9103"
+    env_file: "rumi-as/.env"
+    token_env: "RUMI_ADMIN_TOKEN"
+  eggdrop:
+    type: "eggdrop"
+    host: "127.0.0.1"
+    port: 6465
+    username: "${EGGDROP_PARTYLINE_USER}"
+    password: "${EGGDROP_PARTYLINE_PASSWORD}"
+    login_timeout_seconds: 10
+    command_timeout_seconds: 8
+    response_idle_seconds: 1
+
+logging:
+  level: "INFO"
+  file: "fluxer_admin.log"

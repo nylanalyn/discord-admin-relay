@@ -37,3 +37,4 @@ discord_admin.yaml
 .idea/
 .vscode/
 .DS_Store
+.venv/
