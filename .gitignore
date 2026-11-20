@@ -29,6 +29,7 @@ htmlcov/
 
 # Local relay configuration and runtime output
 discord_admin.yaml
+fluxer_admin.yaml
 *.local.yaml
 *.secret.yaml
 *.log
