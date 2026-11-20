@@ -109,7 +109,9 @@ class FluxerAdminRouter:
             return await resp.json()
 
     def _headers(self) -> dict[str, str]:
-        return {"Authorization": f"Bearer {self.token}"}
+        # Fluxer requires the "Bot " scheme prefix for bot tokens;
+        # "Bearer" is reserved for OAuth2 access tokens and gets 401.
+        return {"Authorization": f"Bot {self.token}"}
 
     async def _on_ready(self, data: dict[str, Any]) -> None:
         self._ready.set()

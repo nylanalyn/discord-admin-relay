@@ -110,6 +110,7 @@ class FakeGateway:
     def __init__(self):
         self.received_messages = []
         self.identify_payload = None
+        self.me_authorization = None
         self.heartbeats = 0
         self.runner = None
         self.port = None
@@ -140,6 +141,7 @@ class FakeGateway:
         )
 
     async def _me(self, request):
+        self.me_authorization = request.headers.get("Authorization")
         return web.json_response({"id": "1", "username": "relay-bot", "bot": True})
 
     async def _create_message(self, request):
@@ -216,6 +218,8 @@ class GatewayRoundTripTests(unittest.IsolatedAsyncioTestCase):
                 timeout = aiohttp.ClientTimeout(total=30)
                 router.session = aiohttp.ClientSession(timeout=timeout)
                 await router._discover_endpoints()
+                me = await router._get_me()
+                assert me["username"] == "relay-bot"
                 router._gateway = FluxerGateway(
                     router.gateway_url,
                     router.token,
@@ -242,6 +246,8 @@ class GatewayRoundTripTests(unittest.IsolatedAsyncioTestCase):
 
             self.assertIsNotNone(server.identify_payload)
             self.assertEqual(server.identify_payload["token"], "tok")
+            # Fluxer REST requires the "Bot " scheme for bot tokens; "Bearer" is 401.
+            self.assertEqual(server.me_authorization, "Bot tok")
             self.assertEqual(server.identify_payload["intents"], 0)
             self.assertGreaterEqual(server.heartbeats, 1)
             self.assertEqual(server.received_messages, [("111", "**aria**\necho:ping:")])
